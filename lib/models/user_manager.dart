@@ -9,7 +9,7 @@ class UserManager extends ChangeNotifier {
   bool _loading = false;
   bool get loading => _loading;
   Future<void> signIn({User user, Function onFail, Function onSuccess}) async {
-    setLoading(true);
+    loading = true;
     try {
       final AuthResult result = await auth.signInWithEmailAndPassword(
           email: user.email, password: user.password);
@@ -18,10 +18,11 @@ class UserManager extends ChangeNotifier {
     } on PlatformException catch (e) {
       onFail(getErrorString(e.code));
     }
-    setLoading(false);
+    loading = false;
   }
 
-  void setLoading(bool value) {
+  set loading(bool value) {
     _loading = value;
+    notifyListeners();
   }
 }
