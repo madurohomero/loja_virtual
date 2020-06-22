@@ -23,13 +23,14 @@ class LoginScreen extends StatelessWidget {
           child: Form(
             key: formKey,
             child: Consumer<UserManager>(
-              builder: (_, userManager, __) {
+              builder: (_, userManager, child) {
                 return ListView(
                   padding: const EdgeInsets.all(16),
                   shrinkWrap: true,
                   children: <Widget>[
                     TextFormField(
                       controller: emailController,
+                      enabled: !userManager.loading,
                       decoration: const InputDecoration(hintText: 'E-mail'),
                       keyboardType: TextInputType.emailAddress,
                       autocorrect: false,
@@ -43,6 +44,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     TextFormField(
                       controller: passController,
+                      enabled: !userManager.loading,
                       decoration: const InputDecoration(hintText: 'Senha'),
                       autocorrect: false,
                       obscureText: true,
@@ -52,36 +54,46 @@ class LoginScreen extends StatelessWidget {
                         return null;
                       },
                     ),
+                    child,
                     const SizedBox(
                       height: 16,
                     ),
                     SizedBox(
                       height: 44,
                       child: RaisedButton(
-                        onPressed: () {
-                          if (formKey.currentState.validate()) {
-                            context.read<UserManager>().signIn(
-                                user: User(
-                                    email: emailController.text,
-                                    password: passController.text),
-                                onFail: (e) {
-                                  scaffoldKey.currentState
-                                      .showSnackBar(SnackBar(
-                                    content: Text('Falha ao Entrar: $e'),
-                                    backgroundColor: Colors.red,
-                                  ));
-                                },
-                                onSuccess: () {
-                                  // TODO : FECHAR A TELA DE LOGIN
-                                });
-                          }
-                        },
+                        onPressed: userManager.loading
+                            ? null
+                            : () {
+                                if (formKey.currentState.validate()) {
+                                  userManager.signIn(
+                                      user: User(
+                                          email: emailController.text,
+                                          password: passController.text),
+                                      onFail: (e) {
+                                        scaffoldKey.currentState
+                                            .showSnackBar(SnackBar(
+                                          content: Text('Falha ao Entrar: $e'),
+                                          backgroundColor: Colors.red,
+                                        ));
+                                      },
+                                      onSuccess: () {
+                                        // TODO : FECHAR A TELA DE LOGIN
+                                      });
+                                }
+                              },
                         color: Theme.of(context).primaryColor,
+                        disabledColor:
+                            Theme.of(context).primaryColor.withAlpha(100),
                         textColor: Colors.white,
-                        child: Text(
-                          'Entrar',
-                          style: TextStyle(fontSize: 18),
-                        ),
+                        child: userManager.loading
+                            ? CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation(Colors.white),
+                              )
+                            : const Text(
+                                'Entrar',
+                                style: TextStyle(fontSize: 18),
+                              ),
                       ),
                     )
                   ],
