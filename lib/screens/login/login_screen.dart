@@ -43,7 +43,8 @@ class LoginScreen extends StatelessWidget {
                     TextFormField(
                       controller: emailController,
                       enabled: !userManager.loading,
-                      decoration: const InputDecoration(hintText: 'E-mail'),
+                      decoration: const InputDecoration(
+                          icon: Icon(Icons.email), hintText: 'E-mail'),
                       keyboardType: TextInputType.emailAddress,
                       autocorrect: false,
                       validator: (email) {
@@ -57,7 +58,8 @@ class LoginScreen extends StatelessWidget {
                     TextFormField(
                       controller: passController,
                       enabled: !userManager.loading,
-                      decoration: const InputDecoration(hintText: 'Senha'),
+                      decoration: const InputDecoration(
+                          icon: Icon(Icons.lock), hintText: 'Senha'),
                       autocorrect: false,
                       obscureText: true,
                       validator: (pass) {
