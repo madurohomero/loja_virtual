@@ -14,7 +14,7 @@ class SignUpScreen extends StatelessWidget {
         child: Card(
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
-                      child: ListView(
+            child: ListView(
               padding: const EdgeInsets.all(16),
               shrinkWrap: true,
               children: <Widget>[
@@ -74,9 +74,12 @@ class SignUpScreen extends StatelessWidget {
                   height: 44,
                   child: RaisedButton(
                     color: Theme.of(context).primaryColor,
-                    disabledColor: Theme.of(context).primaryColor.withAlpha(100),
+                    disabledColor:
+                        Theme.of(context).primaryColor.withAlpha(100),
                     textColor: Colors.white,
-                    onPressed: () {},
+                    onPressed: () {
+                      formKey.currentState.validate();
+                    },
                     child: const Text(
                       'Criar Conta',
                       style: TextStyle(fontSize: 18),
