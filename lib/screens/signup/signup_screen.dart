@@ -100,7 +100,18 @@ class SignUpScreen extends StatelessWidget {
                           ));
                           return;
                         }
-                       
+                        context.read<UserManager>().signUp(
+                            user: user,
+                            onSuccess: () {
+                              debugPrint('sucesso');
+                              // TODO: POP
+                            },
+                            onFail: (e) {
+                              scaffoldKey.currentState.showSnackBar(SnackBar(
+                                content: Text('Falha ao cadastrar: $e'),
+                                backgroundColor: Colors.red,
+                              ));
+                            });
                       }
                     },
                     child: const Text(

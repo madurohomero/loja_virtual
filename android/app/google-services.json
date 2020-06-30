@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "696695583267",
+    "firebase_url": "https://lojavirtual-d178e.firebaseio.com",
+    "project_id": "lojavirtual-d178e",
+    "storage_bucket": "lojavirtual-d178e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696695583267:android:fd11342a938f696913b796",
+        "android_client_info": {
+          "package_name": "br.com.homeromaduro.loja_virtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "696695583267-0c619vnrugalo1ssmlsdjq0cfokskvd7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDESfXZra-PGmfFDptRRH7gWGkDpR6Law8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "696695583267-0c619vnrugalo1ssmlsdjq0cfokskvd7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
