@@ -1,4 +1,4 @@
-package com.example.loja_virtual
+package br.com.homeromaduro.loja_virtual
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

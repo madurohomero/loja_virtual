@@ -4,7 +4,16 @@ import 'package:loja_virtual/screens/base/base_screen.dart';
 import 'package:loja_virtual/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  runApp(MyApp());
+
+  // DocumentSnapshot document = await Firestore.instance
+  //     .collection('usuarios')
+  //     .document('oSrgUHCFvqfoqpXKKf9r')
+  //     .get();
+
+  // print(document.data);
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
