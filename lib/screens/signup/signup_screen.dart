@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loja_virtual/helpers/validators.dart';
 import 'package:loja_virtual/models/user.dart';
 import 'package:loja_virtual/models/user_manager.dart';
+
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -23,7 +24,7 @@ class SignUpScreen extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: formKey,
-            child: Consumer(
+            child: Consumer<UserManager>(
               builder: (_, userManager, __) {
                 return ListView(
                   padding: const EdgeInsets.all(16),
@@ -47,7 +48,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     TextFormField(
                       decoration: const InputDecoration(hintText: 'E-mail'),
-                      enabled: !userManager.loading,
+                      enabled: userManager.loading,
                       keyboardType: TextInputType.emailAddress,
                       validator: (email) {
                         if (email.isEmpty)
@@ -62,8 +63,8 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     TextFormField(
                       decoration: const InputDecoration(hintText: 'Senha'),
-                      enabled: !userManager.loading,
                       obscureText: true,
+                      enabled: userManager.loading,
                       validator: (pass) {
                         if (pass.isEmpty)
                           return 'Campo obrigatório';
@@ -78,8 +79,8 @@ class SignUpScreen extends StatelessWidget {
                     TextFormField(
                       decoration:
                           const InputDecoration(hintText: 'Repita a Senha'),
-                      enabled: !userManager.loading,
                       obscureText: true,
+                      enabled: userManager.loading,
                       validator: (pass) {
                         if (pass.isEmpty)
                           return 'Campo obrigatório';
