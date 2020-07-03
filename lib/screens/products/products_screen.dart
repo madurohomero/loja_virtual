@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/common/custom_drawer/custom_drawer.dart';
-import 'package:loja_virtual/models/product.dart';
 import 'package:loja_virtual/models/product_manager.dart';
 import 'package:loja_virtual/screens/products/components/product_list_tile.dart';
 import 'package:provider/provider.dart';
