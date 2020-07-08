@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/models/item_size.dart';
+import 'package:loja_virtual/models/product.dart';
+import 'package:provider/provider.dart';
 
 class SizeWidget extends StatelessWidget {
   const SizeWidget({this.size});
@@ -7,6 +9,7 @@ class SizeWidget extends StatelessWidget {
   final ItemSize size;
   @override
   Widget build(BuildContext context) {
+    final product = context.watch<Product>();
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
