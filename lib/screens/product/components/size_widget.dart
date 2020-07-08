@@ -10,6 +10,7 @@ class SizeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = context.watch<Product>();
+
     final selected = size == product.selectedSize;
 
     return Container(
