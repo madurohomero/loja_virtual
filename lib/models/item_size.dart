@@ -1,5 +1,3 @@
-import 'dart:html';
-
 class ItemSize {
   ItemSize.fromMap(Map<String, dynamic> map) {
     name = map['name'] as String;
