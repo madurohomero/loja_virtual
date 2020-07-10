@@ -23,7 +23,7 @@ class Product extends ChangeNotifier {
   ItemSize _selectedSize;
   ItemSize get selectedSize => _selectedSize;
   set selectedSize(ItemSize value) {
-    _selectedSize = _selectedSize;
+    _selectedSize = value;
     notifyListeners();
   }
 }
