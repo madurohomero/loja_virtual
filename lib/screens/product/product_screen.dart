@@ -40,7 +40,7 @@ class ProductScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
                     product.name,
@@ -90,20 +90,33 @@ class ProductScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
+                  if(product.hasStock)
                   Consumer2<UserManager, Product>(
-                      builder: (_, userManager, product, __) {
-                    return SizedBox(
-                      height: 44,
-                      child: RaisedButton(
-                        onPressed: () {},
-                        color: primaryColor,
-                        textColor: Colors.white,
-                        child: Text(userManager.isLoggedIn
-                            ? 'Adicionar ao Carrinho'
-                            : 'Entre para Comprar'),
-                      ),
-                    );
-                  })
+                    builder: (_, userManager, product, __) {
+                      return SizedBox(
+                        height: 44,
+                        child: RaisedButton(
+                          onPressed: product.selectedSize != null
+                              ? () {
+                                  if (userManager.isLoggedIn) {
+                                    //TODO: Adicionar ao Carrinho
+                                  } else {
+                                    Navigator.of(context).pushNamed('/login');
+                                  }
+                                }
+                              : null,
+                          color: primaryColor,
+                          textColor: Colors.white,
+                          child: Text(
+                            userManager.isLoggedIn
+                                ? 'Adicionar ao Carrinho'
+                                : 'Entre para Comprar',
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      );
+                    },
+                  )
                 ],
               ),
             )
