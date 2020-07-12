@@ -103,7 +103,7 @@ class ProductScreen extends StatelessWidget {
                                       context
                                           .read<CartManager>()
                                           .addToCard(product);
-                                      Navigator.of(context).pushNamed('cart');
+                                      Navigator.of(context).pushNamed('/cart');
                                     } else {
                                       Navigator.of(context).pushNamed('/login');
                                     }
