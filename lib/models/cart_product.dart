@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:loja_virtual/models/item_size.dart';
 import 'package:loja_virtual/models/product.dart';
 
-class CartProduct {
+class CartProduct extends ChangeNotifier {
   CartProduct.fromProduct(this.product) {
     productId = product.id;
     quantity = 1;
@@ -33,7 +34,7 @@ class CartProduct {
   }
 
   num get unitPrice {
-    if (product == null) return null;
+    if (product == null) return 0;
     return itemSize?.price ?? 0;
   }
 
@@ -47,5 +48,15 @@ class CartProduct {
 
   bool stackble(Product product) {
     return product.id == productId && product.selectedSize.name == size;
+  }
+
+  void increment() {
+    quantity++;
+    notifyListeners();
+  }
+
+  void decrement() {
+    quantity--;
+    notifyListeners();
   }
 }

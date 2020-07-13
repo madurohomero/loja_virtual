@@ -29,6 +29,8 @@ class CartManager {
       e.quantity++;
     } catch (e) {
       final cartProduct = CartProduct.fromProduct(product);
+      // TODO: MONITORAR A QTDE DO CARRINHO
+      // cartProduct.addListener();
       items.add(cartProduct);
       user.cartReference.add(cartProduct.toCartItemMap());
     }
