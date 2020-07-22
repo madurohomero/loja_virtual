@@ -28,7 +28,7 @@ class CartManager {
   void addToCard(Product product) {
     try {
       final e = items.firstWhere((p) => p.stackble(product));
-      e.quantity++;
+      e.increment();
     } catch (e) {
       final cartProduct = CartProduct.fromProduct(product);
       cartProduct.addListener(_onItemUpdate);
