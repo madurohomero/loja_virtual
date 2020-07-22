@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loja_virtual/models/user_manager.dart';
+import 'package:loja_virtual/controllers/user_manager.dart';
 import 'package:provider/provider.dart';
 
 class CustomDrawerHeader extends StatelessWidget {

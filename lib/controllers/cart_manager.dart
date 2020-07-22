@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:loja_virtual/models/cart_product.dart';
 import 'package:loja_virtual/models/product.dart';
 import 'package:loja_virtual/models/user.dart';
-import 'package:loja_virtual/models/user_manager.dart';
+import 'package:loja_virtual/controllers/user_manager.dart';
 
 class CartManager {
   List<CartProduct> items = [];
