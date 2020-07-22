@@ -20,7 +20,9 @@ class CartManager {
 
   Future<void> _loadCartItems() async {
     final QuerySnapshot cartSnap = await user.cartReference.getDocuments();
-    items = cartSnap.documents.map((d) => CartProduct.fromDocument(d)).toList();
+    items = cartSnap.documents
+        .map((d) => CartProduct.fromDocument(d)..addListener(_onItemUpdate))
+        .toList();
   }
 
   void addToCard(Product product) {
@@ -29,10 +31,13 @@ class CartManager {
       e.quantity++;
     } catch (e) {
       final cartProduct = CartProduct.fromProduct(product);
-      // TODO: MONITORAR A QTDE DO CARRINHO
-      // cartProduct.addListener();
+      cartProduct.addListener(_onItemUpdate);
       items.add(cartProduct);
       user.cartReference.add(cartProduct.toCartItemMap());
     }
+  }
+
+  void _onItemUpdate() {
+    print('atualizado');
   }
 }
