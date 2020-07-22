@@ -38,6 +38,14 @@ class CartManager {
   }
 
   void _onItemUpdate() {
-    print('atualizado');
+    for (final cartProduct in items) {
+      _updateCartProduct(cartProduct);
+    }
+  }
+
+  void _updateCartProduct(CartProduct cartProduct) {
+    user.cartReference
+        .document(cartProduct.id)
+        .updateData(cartProduct.toCartItemMap());
   }
 }
