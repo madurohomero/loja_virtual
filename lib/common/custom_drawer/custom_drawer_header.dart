@@ -21,7 +21,7 @@ class CustomDrawerHeader extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  userManager.loading ? 'Olá, ${userManager.user?.name ?? ''}' : '',
+                  userManager.isLoggedIn ? 'Olá, ${userManager.user?.name ?? ''}' : '',
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(
