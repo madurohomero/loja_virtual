@@ -48,7 +48,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     TextFormField(
                       decoration: const InputDecoration(hintText: 'E-mail'),
-                      enabled: userManager.loading,
+                      enabled: !userManager.loading,
                       keyboardType: TextInputType.emailAddress,
                       validator: (email) {
                         if (email.isEmpty)
@@ -64,7 +64,7 @@ class SignUpScreen extends StatelessWidget {
                     TextFormField(
                       decoration: const InputDecoration(hintText: 'Senha'),
                       obscureText: true,
-                      enabled: userManager.loading,
+                      enabled: !userManager.loading,
                       validator: (pass) {
                         if (pass.isEmpty)
                           return 'Campo obrigatório';
@@ -80,7 +80,7 @@ class SignUpScreen extends StatelessWidget {
                       decoration:
                           const InputDecoration(hintText: 'Repita a Senha'),
                       obscureText: true,
-                      enabled: userManager.loading,
+                      enabled: !userManager.loading,
                       validator: (pass) {
                         if (pass.isEmpty)
                           return 'Campo obrigatório';
