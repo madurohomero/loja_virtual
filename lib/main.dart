@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/controllers/admin_users_manager.dart';
 import 'package:loja_virtual/controllers/cart_manager.dart';
 import 'package:loja_virtual/controllers/home_manager.dart';
 import 'package:loja_virtual/models/product.dart';
@@ -7,6 +8,7 @@ import 'package:loja_virtual/controllers/user_manager.dart';
 import 'package:loja_virtual/screens/auth/auth_page.dart';
 import 'package:loja_virtual/screens/base/base_screen.dart';
 import 'package:loja_virtual/screens/cart/cart_screen.dart';
+import 'package:loja_virtual/screens/edit_product/edit_product_screen.dart';
 import 'package:loja_virtual/screens/type/login_type_screen.dart';
 import 'package:loja_virtual/screens/login/login_screen.dart';
 import 'package:loja_virtual/screens/product/product_screen.dart';
@@ -48,9 +50,15 @@ class MyApp extends StatelessWidget {
           update: (_, userManager, cartManager) =>
               cartManager..updateUser(userManager),
         ),
+        ChangeNotifierProxyProvider<UserManager, AdminUsersManager>(
+          create: (_) => AdminUsersManager(),
+          lazy: false,
+          update: (_, usermanager, adminUsersManager) =>
+              adminUsersManager..updateUser(usermanager),
+        ),
       ],
       child: MaterialApp(
-        title: 'Loja Virtual Eccus',
+        title: 'Loja Virtual',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryColor: const Color.fromARGB(255, 4, 125, 141),
@@ -72,6 +80,8 @@ class MyApp extends StatelessWidget {
                   builder: (_) => ProductScreen(settings.arguments as Product));
             case '/cart':
               return MaterialPageRoute(builder: (_) => CartScreen());
+            case '/edit_product':
+              return MaterialPageRoute(builder: (_) => EditProductScreen(settings.arguments as Product));
             case '/base':
             default:
               return MaterialPageRoute(builder: (_) => BaseScreen());
