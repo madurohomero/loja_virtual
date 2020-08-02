@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/common/custom_drawer/drawer_tile.dart';
+import 'package:loja_virtual/controllers/user_manager.dart';
+import 'package:provider/provider.dart';
 
 import 'custom_drawer_header.dart';
 
@@ -8,18 +10,17 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Stack(
-        children: <Widget> [
+        children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  const Color.fromARGB(255, 203, 236, 241),
-                  Colors.white,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              )
-            ),
+                gradient: LinearGradient(
+              colors: [
+                const Color.fromARGB(255, 203, 236, 241),
+                Colors.white,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            )),
           ),
           ListView(
             children: <Widget>[
@@ -44,6 +45,29 @@ class CustomDrawer extends StatelessWidget {
                 iconData: Icons.location_on,
                 title: 'Lojas',
                 page: 3,
+              ),
+              Consumer<UserManager>(
+                builder: (_, userManager, __) {
+                  if (userManager.adminEnabled) {
+                    return Column(
+                      children: <Widget>[
+                        const Divider(),
+                        DrawerTile(
+                          iconData: Icons.settings,
+                          title: 'Usuários',
+                          page: 4,
+                        ),
+                        DrawerTile(
+                          iconData: Icons.settings,
+                          title: 'Pedidos',
+                          page: 5,
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
               ),
             ],
           ),
