@@ -1,4 +1,4 @@
-String getErrorString(String code){
+String getErrorString(String code) {
   switch (code) {
     case 'ERROR_WEAK_PASSWORD':
       return 'Sua senha é muito fraca.';
@@ -18,8 +18,14 @@ String getErrorString(String code){
       return 'Muitas solicitações. Tente novamente mais tarde.';
     case 'ERROR_OPERATION_NOT_ALLOWED':
       return 'Operação não permitida.';
+    case 'ERROR_INVALID_VERIFICATION_CODE':
+      return 'O código de verificação é inválido.';
+    case 'ERROR_USER_DISABLED':
+      return 'A conta do usuário foi desativada por um administrador';
+    case 'invalidCredential':
+      return 'O formato do número de telefone fornecido está incorreto.';
 
     default:
       return 'Um erro indefinido ocorreu.';
   }
-} 
+}

@@ -4,8 +4,10 @@ import 'package:loja_virtual/controllers/home_manager.dart';
 import 'package:loja_virtual/models/product.dart';
 import 'package:loja_virtual/controllers/product_manager.dart';
 import 'package:loja_virtual/controllers/user_manager.dart';
+import 'package:loja_virtual/screens/auth/auth_page.dart';
 import 'package:loja_virtual/screens/base/base_screen.dart';
 import 'package:loja_virtual/screens/cart/cart_screen.dart';
+import 'package:loja_virtual/screens/type/login_type_screen.dart';
 import 'package:loja_virtual/screens/login/login_screen.dart';
 import 'package:loja_virtual/screens/product/product_screen.dart';
 import 'package:loja_virtual/screens/signup/signup_screen.dart';
@@ -57,6 +59,10 @@ class MyApp extends StatelessWidget {
         initialRoute: '/base',
         onGenerateRoute: (settings) {
           switch (settings.name) {
+            case '/auth':
+              return MaterialPageRoute(builder: (_) => AuthPage());
+            case '/type':
+              return MaterialPageRoute(builder: (_) => LoginTypeScreen());
             case '/login':
               return MaterialPageRoute(builder: (_) => LoginScreen());
             case '/signup':
