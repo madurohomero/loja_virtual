@@ -19,7 +19,6 @@ class ImagesForm extends StatelessWidget {
           state.didChange(state.value);
           Navigator.of(context).pop();
         }
-
         return AspectRatio(
           aspectRatio: 1,
           child: Carousel(
