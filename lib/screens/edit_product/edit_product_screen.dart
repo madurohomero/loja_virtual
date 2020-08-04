@@ -1,11 +1,10 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/models/product.dart';
 import 'package:loja_virtual/screens/edit_product/components/image_form.dart';
+import 'package:loja_virtual/screens/edit_product/components/sizes_form.dart';
 
 class EditProductScreen extends StatelessWidget {
-  EditProductScreen(this.product);
+  EditProductScreen(Product p ): product = p != null ? p.clone() : Product();
 
   final Product product;
 
@@ -81,19 +80,25 @@ class EditProductScreen extends StatelessWidget {
                       return null;
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16, bottom: 8),
-                    child: Text(
-                      'Tamanho',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                    ),
+                  SizesForm(product),
+                  const SizedBox(
+                    height: 20,
                   ),
-                  RaisedButton(
-                    onPressed: () {
-                      if (formKey.currentState.validate()) {}
-                    },
-                    child: const Text('Salvar'),
+                  SizedBox(
+                    child: RaisedButton(
+                      onPressed: () {
+                        if (formKey.currentState.validate()) {}
+                      },
+                      textColor: Colors.white,
+                      color: primaryColor,
+                      disabledColor: primaryColor.withAlpha(100),
+                      child: const Text(
+                        'Salvar',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
