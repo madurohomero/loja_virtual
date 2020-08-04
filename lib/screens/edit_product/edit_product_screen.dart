@@ -4,9 +4,12 @@ import 'package:loja_virtual/screens/edit_product/components/image_form.dart';
 import 'package:loja_virtual/screens/edit_product/components/sizes_form.dart';
 
 class EditProductScreen extends StatelessWidget {
-  EditProductScreen(Product p ): product = p != null ? p.clone() : Product();
+  EditProductScreen(Product p)
+      : editing = p != null,
+        product = p != null ? p.clone() : Product();
 
   final Product product;
+  final bool editing;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
@@ -14,7 +17,7 @@ class EditProductScreen extends StatelessWidget {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Produto'),
+        title: Text(editing ? 'Editar Produto' : 'Criar Produto'),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
