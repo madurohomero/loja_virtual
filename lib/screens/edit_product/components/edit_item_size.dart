@@ -36,6 +36,11 @@ class EditItemSize extends StatelessWidget {
             initialValue: size.stock?.toString(),
             decoration: InputDecoration(labelText: 'Estoque', isDense: true),
             keyboardType: TextInputType.numberWithOptions(decimal: false),
+            validator: (stock) {
+              if (int.tryParse(stock) == null) return 'Inválido';
+              return null;
+            },
+            onChanged: (stock) => size.stock = int.tryParse(stock),
           ),
         ),
         SizedBox(
@@ -51,6 +56,11 @@ class EditItemSize extends StatelessWidget {
               prefixText: 'R\$',
             ),
             keyboardType: TextInputType.numberWithOptions(decimal: true),
+            validator: (price) {
+              if (num.tryParse(price) == null) return 'Inválido';
+              return null;
+            },
+            onChanged: (price) => size.price = num.tryParse(price),
           ),
         ),
         CustomIconButton(

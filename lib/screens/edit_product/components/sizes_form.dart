@@ -5,13 +5,19 @@ import 'package:loja_virtual/models/product.dart';
 import 'package:loja_virtual/screens/edit_product/components/edit_item_size.dart';
 
 class SizesForm extends StatelessWidget {
-  SizesForm(this.product);
+  const SizesForm(this.product);
 
   final Product product;
+  
   @override
   Widget build(BuildContext context) {
     return FormField<List<ItemSize>>(
       initialValue: product.sizes,
+      validator: (sizes) {
+        if (sizes.isEmpty) return 'Insira um tamanho';
+        return null;
+      },
+      onSaved: (sizes) => product.sizes = sizes,
       builder: (state) {
         return Column(
           children: [

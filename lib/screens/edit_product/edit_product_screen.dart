@@ -12,6 +12,7 @@ class EditProductScreen extends StatelessWidget {
   final bool editing;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
@@ -43,6 +44,7 @@ class EditProductScreen extends StatelessWidget {
                       if (name.length < 6) return 'Título muito curto';
                       return null;
                     },
+                    onSaved: (name) => product.name = name,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
@@ -82,6 +84,7 @@ class EditProductScreen extends StatelessWidget {
                       if (desc.length < 10) return 'Descrição muito curta';
                       return null;
                     },
+                    onSaved: (desc) => product.description = desc,
                   ),
                   SizesForm(product),
                   const SizedBox(
@@ -90,7 +93,10 @@ class EditProductScreen extends StatelessWidget {
                   SizedBox(
                     child: RaisedButton(
                       onPressed: () {
-                        if (formKey.currentState.validate()) {}
+                        if (formKey.currentState.validate()) {
+                          formKey.currentState.save();
+                          product.save();
+                        }
                       },
                       textColor: Colors.white,
                       color: primaryColor,
